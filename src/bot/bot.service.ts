@@ -22,6 +22,8 @@ const handleImageMessage = async (
   const sentPhotoData = photoMessagePayload?.pop();
   const fileId = sentPhotoData?.file_id || '';
 
+  const watermarkText = require('../image/image.constants').watermarkText; // Import the watermark text
+
   const imageResultBuffer = await imageService.getAndProcessImage(fileId, watermarkText);
 
   await bot.sendMessage(chatId, 'This is your bookmarked image');
