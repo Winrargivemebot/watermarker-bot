@@ -16,12 +16,18 @@ const handleImageMessage = async (
   const messageId = message.message_id;
   const chatId = message.chat.id;
 
-  const sentMessage = await bot.sendMessage(chatId, 'Enter your watermark text', {
-    reply_markup: {
-      force_reply: true
-    },
-    reply_to_message_id: messageId
-  });
+  bot.sendMessage(chatId, 'Processing your image');
+
+  const photoMessagePayload = message.photo;
+  const sentPhotoData = photoMessagePayload?.pop();
+  const fileId = sentPhotoData?.file_id || '';
+
+  const imageResultBuffer = await imageService.getAndProcessImage(fileId, watermarkText);
+
+  await bot.sendMessage(chatId, 'This is your bookmarked image');
+  await bot.sendPhoto(chatId, imageResultBuffer);
+};
+
 
   const replyMessage: TelegramBot.Message = await new Promise((resolve) => {
     bot.onReplyToMessage(
