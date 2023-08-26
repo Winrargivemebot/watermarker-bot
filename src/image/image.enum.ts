@@ -1,5 +1,4 @@
 export enum WATERMARK_GRAVITY {
-  SOUTH = 'south',
-  SOUTHEAST = 'southeast',
-  
+    SOUTH = 'south',
+    SOUTHEAST = 'southeast'
 }
