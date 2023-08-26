@@ -11,7 +11,7 @@ Done
 `;
 
 export const aboutMessage = `
-Made by OTREDWine
+deployed by @Usernamei234567891011121314151
 `;
 
 export const startMessage = `
